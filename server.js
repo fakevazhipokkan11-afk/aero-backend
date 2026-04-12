@@ -12,7 +12,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const { errorHandler, notFound } = require("./middleware/errorHandler");
-
+const cors = require('cors');
 // ── Connect to MongoDB ──
 connectDB();
 
@@ -77,3 +77,8 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📋 Environment: ${process.env.NODE_ENV || "development"}`);
 });
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Your frontend URL
+  credentials: true,
+}));
